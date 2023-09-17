@@ -54,6 +54,16 @@ h1 {
   display: inline-flex;
 }
 
+.app-div {
+  width: 40rem;
+  height: 30rem;
+  border: 2px solid slateblue;
+  background-color: rgba(100, 148, 237, 0.24);
+  border-radius: 1rem;
+  padding-inline: 3rem;
+  padding-block: 5rem;
+}
+
 /* information form */
 
 .age-div {
@@ -86,6 +96,13 @@ h1 {
 
 label {
   text-align: left;
+}
+
+/* results */
+
+#result-container {
+  font-size: 3em;
+  color: royalblue;
 }
 
 /* buttons */

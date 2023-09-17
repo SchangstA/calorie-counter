@@ -13,6 +13,7 @@ export function App() {
 
   return (
     <>
+    <div className='app-div'>
       <div>
         <Information />
       </div>
@@ -26,6 +27,7 @@ export function App() {
           <MinusCal updateCount={updateCount} />
         </div>
       </div>
+    </div>
     </>
   );
 }
