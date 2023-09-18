@@ -1,9 +1,11 @@
 import React, { useState } from "react";
+import { Form } from "./Form";
+import { Result } from "./Results";
 
 export function Information() {
   const [inputs, setInputs] = useState({
     age: "",
-    gender: false,
+    gender: "",
     height: "",
     weight: ""
   });
@@ -12,7 +14,8 @@ export function Information() {
 
   const handleChange = (event) => {
     const name = event.target.name;
-    const value = event.target.type === "checkbox" ? event.target.checked : event.target.value;
+    const value =
+      event.target.type === "checkbox" ? (event.target.checked ? "male" : "female") : event.target.value;
     setInputs((values) => ({ ...values, [name]: value }));
   };
 
@@ -33,85 +36,12 @@ export function Information() {
     setSubmitted(true);
   };
 
-return (
-    <>  
+  return (
+    <>
       {!submitted ? (
-        <form onSubmit={handleSubmit} className="information-form">
-          <div className="age-div">
-            <label htmlFor="age">
-              Age
-            </label>
-            <input 
-                type="text"
-                name="age"
-                required
-                value={inputs.age || ""}
-                onChange={handleChange} 
-                placeholder="15-80" 
-                id="age"/>
-          </div>
-          <div className="gender-div">
-            <label htmlFor="gender">
-              Gender
-            </label>
-            <label htmlFor="male-box">
-              Male
-            </label>
-            <input 
-              type="checkbox"
-              name="male"
-              checked={inputs.male}
-              onChange={handleChange} 
-              id='male-box'/>
-            <label htmlFor="female-box">
-              Female
-            </label>
-            <input 
-              type="checkbox" 
-              name="female"
-              checked={inputs.female || ""}
-              onChange={handleChange}
-              id='female-box'/>
-          </div>
-          <div className="height-div">
-            <label htmlFor="height">
-              Height
-            </label>
-            <input 
-                type="text"
-                name="height"
-                required
-                value={inputs.height || ""} 
-                onChange={handleChange}
-                placeholder="CM"/>
-          </div>
-          <div className="weight-div">
-            <label htmlFor="weight">
-              Weight
-            </label>
-            <input 
-                type="text"
-                name="weight"
-                required
-                value={inputs.weight || ""}
-                onChange={handleChange} 
-                placeholder="KG"/>
-          </div>
-          <button id="submit-btn">
-            Submit
-          </button>
-        </form>
-        ) : (
-        <div id="submission-message">
-          <h1>Caloric Maintenance</h1>
-        </div>
-      )}
-      {submitted && (
-          <div>
-            <h1 id="result-container">
-              {caloricMaintenance !== null ? caloricMaintenance : ""}
-            </h1>
-          </div>
+        <Form inputs={inputs} handleChange={handleChange} handleSubmit={handleSubmit} />
+      ) : (
+        <Result caloricMaintenance={caloricMaintenance} />
       )}
     </>
   );
